@@ -1,0 +1,26 @@
+{
+  "name": "homebridge-wordclock",
+  "version": "0.1.0",
+  "description": "Homebridge plugin for ESP8266 WordClock",
+  "license": "ISC",
+  "author": {
+    "name": "Jort Berends"
+  },
+  "keywords": [
+    "homebridge-plugin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jortberends/homebridge-wordclock.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jortberends/homebridge-wordclock/issues"
+  },
+  "dependencies": {
+    "request": "^2.65.0"
+  },
+  "engines": {
+    "node": ">=0.12.0",
+    "homebridge": ">=0.2.0"
+  }
+}
