@@ -1,4 +1,4 @@
-# homebridge-icy
+# homebridge-wordclock
 [Homebridge](https://github.com/nfarina/homebridge) plugin for my personal WordClock.
 
 ## Install plugin
