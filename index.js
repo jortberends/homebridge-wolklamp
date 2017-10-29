@@ -4,21 +4,15 @@ var request = require("request");
 module.exports = function(homebridge){
 	Service = homebridge.hap.Service;
 	Characteristic = homebridge.hap.Characteristic;
-	homebridge.registerAccessory("homebridge-wordclock", "WordClock", WordClock);
+	homebridge.registerAccessory("homebridge-wolklamp", "WolkLamp", WolkLamp);
 };
 
-class WordClock {
+class WolkLamp {
 	constructor(log, config) {
 		this.log = log;
 		
 		this.name = config.name;
 		this.apiroute = config.apiroute;
-		
-		// Local caching of HSB color space for RGB callback
-		this.cache = {};
-		this.cache.hue = 0;
-		this.cache.saturation = 0;
-		this.cache.brightness = 25;
 		
 		this.service = new Service.Lightbulb(this.name);		
 	}
@@ -29,15 +23,15 @@ class WordClock {
 		
 		var sendState;
 		if (state == 0 || state == false) {
-			sendState = 2;
+			sendState = "off";
 		} else {
-			sendState = 1;
+			sendState = "on";
 		}
 		
 		this.log("sending state: "+sendState)
 	
 		request.get({
-			url: this.apiroute + "?power="+sendState
+			url: this.apiroute + "/turn/"+sendState
 		}, function (err, response, body) {
 			this.log(err);
 			this.log(body);
@@ -45,6 +39,7 @@ class WordClock {
 		}.bind(this));
 	}
 	
+/*
 	setBrightness(brightness, callback) {
 		this.log("Setting brightness to: "+brightness);
 		this.cache.brightness = brightness;
@@ -61,19 +56,25 @@ class WordClock {
 			callback(err);
 		}.bind(this));
 	}
+*/
 	
+/*
 	setHue (level, callback) {
 		this.log('Caching Hue as %s ...', level);
 		this.cache.hue = level;
 	this.setRGB(callback);
 	}
+*/
 	
+/*
 	setSaturation (level, callback) {
 		this.log('Caching Saturation as %s ...', level);
 		this.cache.saturation = level;
 		this.setRGB(callback);
 	}
+*/
 	
+/*
 	setRGB (callback) {
 		var rgb = this.hsvToRgb(this.cache.hue, this.cache.saturation, this.cache.brightness);
 		request.get({
@@ -84,6 +85,7 @@ class WordClock {
 			callback(err);
 		}.bind(this));
 	}
+*/
 		
 	getName(callback) {
 		this.log("getName: ", this.name);
@@ -98,13 +100,14 @@ class WordClock {
 		
 		informationService
 			.setCharacteristic(Characteristic.Manufacturer, 'Jort Berends')
-			.setCharacteristic(Characteristic.Model, 'WordClock')
+			.setCharacteristic(Characteristic.Model, 'WolkLamp')
 			.setCharacteristic(Characteristic.SerialNumber, '1');
 		
 		this.service
 			.getCharacteristic(Characteristic.On)
 			.on('set', this.setPowerState.bind(this));
 		
+/*
 		this.service
 			.addCharacteristic(new Characteristic.Brightness())
 			.on('set', this.setBrightness.bind(this));
@@ -116,6 +119,7 @@ class WordClock {
 		this.service
 			.addCharacteristic(new Characteristic.Saturation())
 			.on('set', this.setSaturation.bind(this));
+*/
 		
 		this.service
 			.getCharacteristic(Characteristic.Name)

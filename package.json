@@ -1,7 +1,7 @@
 {
-  "name": "homebridge-wordclock",
+  "name": "homebridge-wolklamp",
   "version": "0.1.0",
-  "description": "Homebridge plugin for ESP8266 WordClock",
+  "description": "Homebridge plugin for ESP8266 WolkLamp",
   "license": "ISC",
   "author": {
     "name": "Jort Berends"
@@ -11,10 +11,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/jortberends/homebridge-wordclock.git"
+    "url": "git://github.com/jortberends/homebridge-wolklamp.git"
   },
   "bugs": {
-    "url": "https://github.com/jortberends/homebridge-wordclock/issues"
+    "url": "https://github.com/jortberends/homebridge-wolklamp/issues"
   },
   "dependencies": {
     "request": "^2.65.0"
